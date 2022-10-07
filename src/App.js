@@ -1,30 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-class App extends React.Component {
-  state = {
-    count: 0,
-  };
+const Warning = React.lazy(() => import("./Warning"));
 
-  render() {
-    const { count } = this.state;
+const App = () => {
+  const [count, setCount] = useState(0);
 
-    return (
-      <div>
-        <h1>Hello world!!</h1>
-        <h2 className={count > 10 ? "warning" : null}>Count: {count}</h2>
-        <button
-          onClick={() => this.setState((state) => ({ count: state.count + 1 }))}
-        >
-          +
-        </button>
-        <button
-          onClick={() => this.setState((state) => ({ count: state.count - 1 }))}
-        >
-          -
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>Hello world!</h1>
+      <h2 className={count > 10 ? "warning" : null}>Count: {count}</h2>
+      <button onClick={() => setCount((state) => state + 1)}>+</button>
+      <button onClick={() => setCount((state) => state - 1)}>-</button>
+      {count > 10 ? (
+        <React.Suspense fallback={null}>
+          <Warning />
+        </React.Suspense>
+      ) : null}
+    </div>
+  );
+};
 
 export default App;
