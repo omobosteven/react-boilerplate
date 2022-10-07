@@ -5,6 +5,11 @@ import "core-js/stable";
 import "./styles.css";
 import DefaultErrorBoundary from "./DefaultErrorBoundary";
 
+if (process.env.NODE_ENV === "development") {
+  const axe = require("react-axe");
+  axe(React, ReactDOM, 1000);
+}
+
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(
