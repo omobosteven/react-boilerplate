@@ -15,20 +15,6 @@ module.exports = {
         use: [
           {
             loader: require.resolve("babel-loader"),
-            options: {
-              presets: [
-                [
-                  "@babel/preset-env",
-                  {
-                    targets: ["last 2 versions", "not dead", "not < 2%"],
-                    useBuiltIns: "entry",
-                    corejs: 3,
-                  },
-                ],
-                "@babel/preset-react",
-              ],
-              plugins: ["@babel/plugin-proposal-class-properties"],
-            },
           },
         ],
       },
